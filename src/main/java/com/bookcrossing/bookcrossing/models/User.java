@@ -1,7 +1,6 @@
 package com.bookcrossing.bookcrossing.models;
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "Users")
@@ -17,14 +16,22 @@ public class User {
     private String username;
     @Column(name="password")
     private String password;
-    @OneToMany(fetch = FetchType.EAGER)
-    @Column(name="bookedBooks")
-    private List<Book> bookedBooks;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Comments> comments;
+    @OneToMany(mappedBy = "booking")
+    private List<Booking> booking;
+
+    @OneToMany(mappedBy = "Comments")
+    List<Comments> comments;
+
     public User(){
         //NOOP
+    }
+    public User(long id, String name, String surname, String username, String password) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
     }
     public long getId() {
         return id;
@@ -66,20 +73,16 @@ public class User {
         this.password = password;
     }
 
-    public List<Book> getBookedBooks() {
-        return bookedBooks;
-    }
-
-    public void setBookedBooks(List<Book> bookedBooks) {
-        this.bookedBooks = bookedBooks;
-    }
-
-    public User(long id, String name, String surname, String username, String password, List<Book> bookedBooks) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
-        this.bookedBooks = bookedBooks;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", booking=" + booking +
+                ", comments=" + comments +
+                '}';
     }
 }

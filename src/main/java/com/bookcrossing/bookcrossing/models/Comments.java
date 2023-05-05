@@ -1,5 +1,4 @@
 package com.bookcrossing.bookcrossing.models;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -59,6 +58,16 @@ public class Comments {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "Comments{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                ", userId=" + userId +
+                '}';
     }
 }
 

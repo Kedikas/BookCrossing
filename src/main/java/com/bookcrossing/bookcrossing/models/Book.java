@@ -1,10 +1,6 @@
 package com.bookcrossing.bookcrossing.models;
-
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Book")
@@ -21,6 +17,8 @@ public class Book {
     private boolean booked;
     @Column(name="rent")
     private short rent;
+    @OneToMany(mappedBy = "booking")
+    private List<Booking> booking;
 
     public Book(){
         //NOOP
@@ -64,13 +62,16 @@ public class Book {
         this.rent = rent;
     }
 
+
     @Override
     public String toString() {
         return "Book{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", booked=" + booked +
                 ", rent=" + rent +
+                ", booking=" + booking +
                 '}';
     }
 }
