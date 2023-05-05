@@ -1,12 +1,9 @@
 package com.bookcrossing.bookcrossing.models;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Comments")
+@Table(name = "comments")
 public class Comments {
     @Id
     @Column(name="id")
@@ -17,6 +14,18 @@ public class Comments {
     @Column(name="date")
     private Date date;
     private long userId;
+
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    private User users;
+
+    public User getUsers() {
+        return users;
+    }
+
+    public void setUsers(User users) {
+        this.users = users;
+    }
 
     public  Comments(){
         //NOOP

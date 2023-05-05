@@ -3,7 +3,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Book")
+@Table(name = "books")
 
 public class Book {
     @Id
@@ -17,7 +17,7 @@ public class Book {
     private boolean booked;
     @Column(name="rent")
     private short rent;
-    @OneToMany(mappedBy = "booking")
+    @OneToMany(mappedBy = "book")
     private List<Booking> booking;
 
     public Book(){

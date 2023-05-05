@@ -15,9 +15,22 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "book_id")
     Book book;
-
+    @Column(name = "dateTaken")
     private LocalDateTime dateTaken;
+    @Column(name = "dateGiven")
     private LocalDateTime dateGiven;
+
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    private User users;
+
+    public User getUsers() {
+        return users;
+    }
+
+    public void setUsers(User users) {
+        this.users = users;
+    }
 
     public Booking(){
         //NOOP
